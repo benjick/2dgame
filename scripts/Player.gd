@@ -6,6 +6,7 @@ const jump_force : int = 500
 const acceleration : int = 50
 const jump_buffer_time : int  = 15
 const cayote_time : int = 15
+const hit_force := 300
 
 var jump_counter : int = 0
 var jump_buffer_counter : int = 0
@@ -19,11 +20,18 @@ var max_fall_speed := 2000
 @onready var sprite = $Rotatable/Sprite
 @onready var raycast := $Rotatable/RayCast2D
 
+signal life_updated(life)
+
 var last_wall_direction = 0
 
 var score := 0
+var life := 3333
+var start_position: Vector2 = Vector2()
 
-func _physics_process(delta):
+func _ready():
+	start_position = self.position
+
+func _physics_process(_delta):
 	if !sprite.is_playing():
 		sprite.play("Idle")
 		
@@ -75,6 +83,9 @@ func _physics_process(delta):
 		sprite.play("Jump")
 	if velocity.y > 0:
 		sprite.play("Fall")
+		
+	if !$HitTimer.is_stopped():
+		sprite.play("Hit")
 	
 	if Input.is_action_just_pressed("ui_select") || Input.is_action_just_pressed("ui_up"):
 		jump_buffer_counter = jump_buffer_time
@@ -83,16 +94,36 @@ func _physics_process(delta):
 		jump_buffer_counter -= 1
 	
 	if jump_buffer_counter > 0 and cayote_counter > 0:
-		velocity.y = -jump_force
-		jump_buffer_counter = 0
-		cayote_counter = 0
+		jump()
 	
 	if Input.is_action_just_released("ui_select"):
 		if velocity.y < 0:
 			velocity.y += 200
 	
 	move_and_slide()
+	
+func jump():
+	velocity.y = -jump_force
+	jump_buffer_counter = 0
+	cayote_counter = 0
 
-func pick_up(body: StaticBody2D):
+func pick_up(_body: StaticBody2D):
 	score += 1
 	print("score: ", score)
+
+func hit(damage: int, direction: int):
+	if $HitTimer.is_stopped():
+		life -= damage
+		life = max(life, 0)
+		emit_signal("life_updated", life)
+		if life < 1:
+			die()
+		else:
+			velocity.x = direction * hit_force
+			$HitTimer.start()
+		print("Damage: ", damage)
+
+func die():
+	print("dead")
+	self.position = start_position
+	life = 3

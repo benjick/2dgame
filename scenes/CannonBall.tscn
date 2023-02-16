@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyhotr8pqvpjm"]
+
+[ext_resource type="Script" path="res://scripts/CanonBall.gd" id="1_r6jli"]
+[ext_resource type="SpriteFrames" uid="uid://cihs8abf30i7s" path="res://assets/PigAndCannon.tres" id="2_oaren"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_of1ws"]
+radius = 6.0
+
+[node name="CannonBall" type="CharacterBody2D"]
+position = Vector2(-17, 5)
+script = ExtResource("1_r6jli")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_oaren")
+animation = &"Cannon Ball"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_of1ws")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

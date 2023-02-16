@@ -260,6 +260,9 @@ script = ExtResource("1_edhq5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -298,3 +301,7 @@ metadata/_aseprite_wizard_config_ = {
 [node name="RayCast2D" type="RayCast2D" parent="Rotatable"]
 position = Vector2(8, 0)
 target_position = Vector2(5, 0)
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

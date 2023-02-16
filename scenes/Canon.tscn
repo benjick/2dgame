@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyksc2bmeai1t"]
+
+[ext_resource type="Script" path="res://scripts/Canon.gd" id="1_bx1a3"]
+[ext_resource type="SpriteFrames" uid="uid://cihs8abf30i7s" path="res://assets/PigAndCannon.tres" id="2_fnnu5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bijov"]
+size = Vector2(20, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdnjf"]
+size = Vector2(21, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdhm5"]
+size = Vector2(23, 18)
+
+[node name="CannonNode" type="Node2D"]
+script = ExtResource("1_bx1a3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="PigBody" type="StaticBody2D" parent="."]
+
+[node name="CannonPig" type="AnimatedSprite2D" parent="PigBody"]
+texture_filter = 1
+position = Vector2(23, 0)
+sprite_frames = ExtResource("2_fnnu5")
+animation = &"Lighting the Cannon"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/10-Cannon and Pig.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="PigBody"]
+
+[node name="Target" type="CollisionShape2D" parent="PigBody/Area2D"]
+position = Vector2(21, -2)
+shape = SubResource("RectangleShape2D_bijov")
+
+[node name="PigCollision" type="CollisionShape2D" parent="PigBody"]
+position = Vector2(21.5, 7.5)
+shape = SubResource("RectangleShape2D_tdnjf")
+
+[node name="CannonBody" type="StaticBody2D" parent="."]
+
+[node name="CanonCollision" type="CollisionShape2D" parent="CannonBody"]
+position = Vector2(-0.5, 7)
+shape = SubResource("RectangleShape2D_sdhm5")
+
+[node name="Cannon" type="AnimatedSprite2D" parent="CannonBody"]
+texture_filter = 1
+sprite_frames = ExtResource("2_fnnu5")
+animation = &"Idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/10-Cannon and Pig.aseprite"
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="PigBody/Area2D" to="." method="_on_area_2d_body_entered"]

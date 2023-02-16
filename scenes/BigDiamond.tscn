@@ -1,9 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://ch1psllsuden8"]
+[gd_scene load_steps=35 format=3 uid="uid://ch1psllsuden8"]
 
 [ext_resource type="Script" path="res://scripts/BigDiamond.gd" id="1_7h6g0"]
 [ext_resource type="Texture2D" uid="uid://cd5yoi7xcimy8" path="res://assets/Cannon.png" id="2_8c23r"]
 [ext_resource type="Script" path="res://scripts/DiamondSprite.gd" id="3_ei8me"]
-[ext_resource type="Script" path="res://scripts/DiamondArea.gd" id="4_qt5bl"]
+[ext_resource type="Texture2D" uid="uid://ble2sxmn7v7g3" path="res://assets/Sprites/12-Live and Coins/Big Diamond Hit (18x14).png" id="3_u4uvl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6dwt6"]
 atlas = ExtResource("2_8c23r")
@@ -28,6 +28,14 @@ region = Rect2(288, 288, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p07q"]
 atlas = ExtResource("2_8c23r")
 region = Rect2(384, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdfad"]
+atlas = ExtResource("3_u4uvl")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ldf7"]
+atlas = ExtResource("3_u4uvl")
+region = Rect2(18, 0, 18, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdnuy"]
 atlas = ExtResource("2_8c23r")
@@ -145,6 +153,17 @@ animations = [{
 "loop": true,
 "name": &"Big Diamond",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdfad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ldf7")
+}],
+"loop": false,
+"name": &"Big Diamond Collected",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -386,7 +405,7 @@ script = ExtResource("1_7h6g0")
 [node name="DiamondSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5lyqq")
-animation = &"Big Diamond"
+animation = &"Big Diamond Collected"
 script = ExtResource("3_ei8me")
 metadata/_aseprite_wizard_config_ = {
 "layer": "Cannon",
@@ -399,7 +418,6 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="DiamondArea" type="Area2D" parent="."]
-script = ExtResource("4_qt5bl")
 
 [node name="DiamondCollision" type="CollisionShape2D" parent="DiamondArea"]
 shape = SubResource("CircleShape2D_vcqtt")
