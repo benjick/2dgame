@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpycd8mpkj1xl"]
+
+[ext_resource type="Script" path="res://scripts/SplashScreen.gd" id="1_xib27"]
+[ext_resource type="FontFile" uid="uid://dj0b1cgr7hlh5" path="res://assets/fonts/WayfarersToyBoxRegular.ttf" id="2_mhrsh"]
+[ext_resource type="SpriteFrames" uid="uid://dheg3v33x0xmm" path="res://assets/KingPig.tres" id="3_ev0y2"]
+
+[node name="IntroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xib27")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ButtonStart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 503.0
+offset_right = 645.0
+offset_bottom = 534.0
+theme_override_fonts/font = ExtResource("2_mhrsh")
+theme_override_font_sizes/font_size = 14
+text = "Start game"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 257.0
+offset_right = 777.0
+offset_bottom = 324.0
+theme_override_fonts/font = ExtResource("2_mhrsh")
+theme_override_font_sizes/font_size = 56
+text = "2dgame"
+
+[node name="Byline" type="Label" parent="."]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 319.0
+offset_right = 1069.0
+offset_bottom = 386.0
+theme_override_fonts/font = ExtResource("2_mhrsh")
+theme_override_font_sizes/font_size = 14
+text = "by Max"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(217, 300)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(847, 263)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("3_ev0y2")
+animation = &"Idle"
+
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
