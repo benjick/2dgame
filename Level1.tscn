@@ -1,23 +1,412 @@
-[gd_scene load_steps=5 format=3 uid="uid://boxyx63vy2x6b"]
+[gd_scene load_steps=13 format=3 uid="uid://boxyx63vy2x6b"]
 
 [ext_resource type="TileSet" uid="uid://c5jkdn8qcxm7n" path="res://assets/TileMap.tres" id="1_cupw0"]
 [ext_resource type="PackedScene" uid="uid://660m8f8wwcr6" path="res://scenes/HUD.tscn" id="2_dp8yr"]
 [ext_resource type="PackedScene" uid="uid://lxxpe6tqd31j" path="res://scenes/Player.tscn" id="3_76n4p"]
 [ext_resource type="PackedScene" uid="uid://ch1psllsuden8" path="res://scenes/BigDiamond.tscn" id="4_vg2ms"]
+[ext_resource type="FontFile" uid="uid://dj0b1cgr7hlh5" path="res://assets/fonts/WayfarersToyBoxRegular.ttf" id="5_l5jm3"]
+[ext_resource type="Texture2D" uid="uid://d3qhdhnojr4ih" path="res://assets/Sprites/SimpleKeys/ARROWLEFT.png" id="6_jd6qs"]
+[ext_resource type="Texture2D" uid="uid://doy04g5w2durx" path="res://assets/Sprites/SimpleKeys/ARROWRIGHT.png" id="7_3fb8u"]
+[ext_resource type="Texture2D" uid="uid://qege4rjxk6wb" path="res://assets/Sprites/SimpleKeys/SHIFT.png" id="7_4bn0l"]
+[ext_resource type="Texture2D" uid="uid://dp70ocenum2qd" path="res://assets/Sprites/SimpleKeys/SPACEALTERNATIVE.png" id="8_l2sjo"]
+[ext_resource type="PackedScene" uid="uid://dpj7vmabyhis5" path="res://scenes/BoxThrower.tscn" id="10_jfb8r"]
+[ext_resource type="PackedScene" uid="uid://cexsom71ycb5w" path="res://scenes/Door.tscn" id="10_rdd5y"]
+[ext_resource type="PackedScene" uid="uid://cyksc2bmeai1t" path="res://scenes/Canon.tscn" id="11_v87ja"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_cupw0")
 format = 2
-layer_0/tile_data = PackedInt32Array(65531, 131075, 1, 65532, 131075, 1, 65533, 131075, 1, 65534, 131075, 1, 65535, 131075, 1, 0, 131075, 1, 1, 131075, 1, 2, 131075, 1, 3, 131075, 1)
+layer_0/tile_data = PackedInt32Array(65531, 131075, 1, 65532, 131075, 1, 65533, 131075, 1, 65534, 131075, 1, 65535, 131075, 1, 0, 131075, 1, 1, 131075, 1, 2, 131075, 1, 3, 131075, 1, 65530, 131075, 1, 65529, 131075, 1, 65528, 131075, 1, 65527, 131075, 1, 65526, 131075, 1, 65525, 131075, 1, 65524, 131075, 1, 65523, 131075, 1, 65522, 131075, 1, 65521, 131075, 1, 65520, 131075, 1, 65519, 131075, 1, 65518, 131075, 1, 65517, 131075, 1, 65516, 131075, 1, 65515, 131075, 1, 65514, 131075, 1, 65513, 131075, 1, 65512, 131075, 1, 65511, 131075, 1, 65510, 131075, 1, -27, 196611, 2, -65563, 196611, 2, -131099, 196611, 2, -196635, 196611, 2, -262171, 196611, 2, -327707, 196611, 2, 65509, 458755, 2, 4, 131075, 1, 5, 131075, 1, 6, 131075, 1, 7, 131075, 1, 8, 131075, 1, 9, 131075, 1, 10, 131075, 1, 11, 131075, 1, 12, 131075, 1, 13, 131075, 1, 14, 131075, 1, 15, 131075, 1, 16, 131075, 1, 17, 131075, 1, 18, 131075, 1, 19, 131075, 1, 20, 131075, 1, 21, 131075, 1, 22, 131075, 1, 23, 131075, 1, 24, 131075, 1, 25, 131075, 1, 26, 131075, 1, 27, 131075, 1, 28, 131075, 1, 29, 131075, 1, 30, 131075, 1, 31, 131075, 1, 32, 131075, 1, 33, 131075, 1, 34, 131075, 1, 35, 131075, 1, 36, 131075, 1, 37, 131075, 1, 38, 131075, 1, 39, 131075, 1, 40, 131075, 1, 41, 131075, 1, 42, 131075, 1, 43, 131075, 1, 44, 131075, 1, 45, 131075, 1, 46, 131075, 1, 47, 131075, 1, 48, 131075, 1, 49, 131075, 1, 50, 131075, 1, 51, 131075, 1, 52, 131075, 1, 53, 131075, 1, 54, 131075, 1, -65481, 65539, 1, 55, 524291, 2, -65480, 131075, 1, -65479, 131075, 1, -65478, 131075, 1, -65477, 131075, 1, -65476, 131075, 1, -65475, 131075, 1, -65469, 720899, 5, -131005, 327683, 2, -196541, 327683, 2, -262077, 327683, 1, -65474, 131075, 1, -65473, 131075, 1, -65472, 131075, 1, -65471, 131075, 1, -65470, 131075, 1, -262074, 65539, 2, -196538, 65539, 2, -131002, 65539, 2, -65466, 65539, 2, 70, 65539, 2, 65606, 65539, 2, 131142, 65539, 2, 196678, 65539, 2, 262214, 65539, 2, 327750, 65539, 2, 393286, 65539, 2, 458822, 65539, 2, 524358, 65539, 2, 589894, 65539, 2, 655430, 65539, 2, 720966, 65539, 2, 786502, 65539, 2, 852038, 131075, 1, 852037, 131075, 1, 852036, 131075, 1, 852035, 131075, 1, 852034, 131075, 1, 852033, 131075, 1, 852032, 131075, 1, 852031, 131075, 1, 852030, 131075, 1, 852029, 131075, 1, 852028, 131075, 1, 852027, 131075, 1, 852026, 131075, 1, 852025, 131075, 1, 852024, 131075, 1, 852023, 131075, 1, 852022, 131075, 1, 852021, 131075, 1, 852020, 131075, 1, 786484, 196611, 2, 720948, 196611, 2, 655412, 196611, 2, 589876, 196611, 2, 524340, 196611, 2, 458804, 196611, 2, 393268, 196611, 2, 720951, 65539, 2, 655415, 65539, 2, 589879, 65539, 2, 524343, 65539, 2, 458807, 65539, 2, 393271, 65539, 2, 327735, 65539, 2, 262199, 65539, 2, 196663, 65539, 2, 131127, 65539, 2, 393267, 131075, 1, 393266, 131075, 1, 393265, 131075, 1, 393264, 131075, 1, 393263, 131075, 1, 393262, 131075, 1, 65592, 65539, 2, 131128, 65539, 2, 458798, 65539, 2, 524334, 65539, 2, 589870, 65539, 2, 655406, 65539, 2, 720942, 65539, 2, 786478, 65539, 2, 852014, 65539, 2, 852013, 131075, 1, 852012, 131075, 1, 852011, 131075, 1, 852010, 131075, 1, 852009, 131075, 1, 852008, 131075, 1, 852007, 131075, 1, 852006, 131075, 1, 852005, 131075, 1, 852004, 131075, 1, 852003, 131075, 1, 852002, 131075, 1, 852001, 131075, 1, 852000, 131075, 1, 851999, 131075, 1, 851998, 131075, 1, 851997, 131075, 1, 851996, 131075, 1, 655389, 65539, 5, 655390, 131075, 5, 655391, 196611, 5, 851993, 196611, 2, 786457, 196611, 2, 720921, 196611, 2, 655385, 196611, 2, 589849, 196611, 2, 524313, 196611, 2, 458777, 196611, 2, 393241, 196611, 2, 327705, 196611, 2, 917529, 196611, 2, 983065, 196611, 2, 1048601, 196611, 2, 1114137, 196611, 2, 1179673, 196611, 2, 1245209, 131075, 1, 1245210, 131075, 1, 1245211, 131075, 1, 1245212, 131075, 1, 1245213, 131075, 1, 1245214, 131075, 1, 1245215, 131075, 1, 1245216, 131075, 1, 1245217, 131075, 1, 1245218, 131075, 1, 1245219, 131075, 1, 1245220, 131075, 1, 1048614, 65539, 5, 1048615, 131075, 5, 1048616, 196611, 5, 1245221, 131075, 1, 1245222, 131075, 1, 1245223, 131075, 1, 1245224, 131075, 1, 1245225, 131075, 1, 1245226, 131075, 1, 1245227, 131075, 1, 1245228, 131075, 1, 1245229, 131075, 1, 1245230, 131075, 1, 1245231, 131075, 1, 1245232, 131075, 1, 1245233, 131075, 1, 1245234, 131075, 1, 1245235, 131075, 1, 1245236, 131075, 1, 1245237, 131075, 1, 1245238, 131075, 1, 1245239, 131075, 1, 1245240, 131075, 1, 1245241, 131075, 1, 1245242, 131075, 1, 1245243, 131075, 1, 1245244, 131075, 1, 1245245, 131075, 1, 1245246, 131075, 1, 1245247, 131075, 1, 1245248, 131075, 1, 1245249, 131075, 1, 1245250, 131075, 1, 1245251, 131075, 1, 1245252, 131075, 1, 1245253, 131075, 1, 1245254, 131075, 1, 1245255, 131075, 1, 1245256, 131075, 1, 1245257, 131075, 1, 1245258, 131075, 1, 1245259, 131075, 1, 1245260, 131075, 1, 1245261, 131075, 1, 1245262, 131075, 1, 1245263, 131075, 1, 1245264, 131075, 1, 1245265, 131075, 1, 1245266, 131075, 1, 1245267, 131075, 1, 1245268, 131075, 1)
 
 [node name="HUD" parent="." instance=ExtResource("2_dp8yr")]
 
 [node name="Player" parent="." instance=ExtResource("3_76n4p")]
-position = Vector2(-58, -20)
+position = Vector2(-112, -138)
 
-[node name="BigDiamond" parent="." instance=ExtResource("4_vg2ms")]
-position = Vector2(31, -21)
+[node name="Instructions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Movement" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -118.0
+offset_top = -82.0
+offset_right = -78.0
+offset_bottom = -42.0
+
+[node name="Label" type="Label" parent="Instructions/Movement"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 38.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Press"
+
+[node name="Label2" type="Label" parent="Instructions/Movement"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 62.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "or
+"
+
+[node name="Label3" type="Label" parent="Instructions/Movement"]
+layout_mode = 0
+offset_left = -44.0
+offset_top = 16.0
+offset_right = 59.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "to move
+"
+
+[node name="TextureRect" type="TextureRect" parent="Instructions/Movement"]
+layout_mode = 0
+offset_left = -39.0
+offset_top = -7.0
+offset_right = -22.0
+offset_bottom = 10.0
+texture = ExtResource("6_jd6qs")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "",
+"source": "res://assets/Aseprite/SimpleKeys.aseprite"
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Instructions/Movement"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -7.0
+offset_right = 43.0
+offset_bottom = 10.0
+texture = ExtResource("7_3fb8u")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "",
+"source": "res://assets/Aseprite/SimpleKeys.aseprite"
+}
+
+[node name="MovementRun" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 477.0
+offset_top = -58.0
+offset_right = 517.0
+offset_bottom = -18.0
+
+[node name="Label" type="Label" parent="Instructions/MovementRun"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 38.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Run faster by
+pressing"
+
+[node name="TextureRect2" type="TextureRect" parent="Instructions/MovementRun"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = -12.0
+offset_right = 116.0
+offset_bottom = 5.0
+texture = ExtResource("7_4bn0l")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "",
+"source": "res://assets/Aseprite/SimpleKeys.aseprite"
+}
+
+[node name="MovementJump" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1685.0
+offset_top = -58.0
+offset_right = 1725.0
+offset_bottom = -18.0
+
+[node name="Label" type="Label" parent="Instructions/MovementJump"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 38.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Jump with"
+
+[node name="TextureRect2" type="TextureRect" parent="Instructions/MovementJump"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -9.0
+offset_right = 62.0
+offset_bottom = 8.0
+texture = ExtResource("8_l2sjo")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "",
+"source": "res://assets/Aseprite/SimpleKeys.aseprite"
+}
+
+[node name="MovementJump2" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1731.0
+offset_top = -29.0
+offset_right = 1771.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Instructions/MovementJump2"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = -72.0
+offset_right = 406.0
+offset_bottom = -34.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Press twice to
+double jump"
+
+[node name="MovementSlide" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1731.0
+offset_top = -29.0
+offset_right = 1771.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Instructions/MovementSlide"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 40.0
+offset_right = 501.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Press
+against
+the
+wall
+to
+slide"
+horizontal_alignment = 2
+
+[node name="MovementWallJump" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1403.0
+offset_top = 212.0
+offset_right = 1443.0
+offset_bottom = 252.0
+
+[node name="Label" type="Label" parent="Instructions/MovementWallJump"]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 79.0
+offset_right = 603.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "You can jump
+from walls,
+but not on the
+same wall twice
+in a row"
+
+[node name="MovementWallJump2" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1403.0
+offset_top = 212.0
+offset_right = 1443.0
+offset_bottom = 252.0
+
+[node name="BigDiamond2" parent="Instructions/MovementWallJump2" instance=ExtResource("4_vg2ms")]
+position = Vector2(177, -36)
+
+[node name="Label" type="Label" parent="Instructions/MovementWallJump2"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = -70.0
+offset_right = 340.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Great!"
+
+[node name="Enemies" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1403.0
+offset_top = 212.0
+offset_right = 1443.0
+offset_bottom = 252.0
+
+[node name="Label" type="Label" parent="Instructions/Enemies"]
+layout_mode = 0
+offset_left = -195.0
+offset_top = 135.0
+offset_right = 13.0
+offset_bottom = 249.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Watch out
+for enemies..."
+
+[node name="Door" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1403.0
+offset_top = 212.0
+offset_right = 1443.0
+offset_bottom = 252.0
+
+[node name="Door" parent="Instructions/Door" instance=ExtResource("10_rdd5y")]
+position = Vector2(1240, 364)
+next_scene = "Level1"
+
+[node name="Label" type="Label" parent="Instructions/Door"]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 349.0
+offset_right = 1147.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Enter the door to
+finish the level!"
+horizontal_alignment = 1
+
+[node name="MoreDiamonds" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1403.0
+offset_top = 212.0
+offset_right = 1443.0
+offset_bottom = 252.0
+
+[node name="Label" type="Label" parent="Instructions/MoreDiamonds"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 316.0
+offset_right = 412.0
+offset_bottom = 430.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "You are awesome!
+Have some more
+diamonds..."
+horizontal_alignment = 1
+
+[node name="BigDiamond3" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(500, 380)
+
+[node name="BigDiamond4" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(629, 380)
+
+[node name="BigDiamond5" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(564, 317)
+
+[node name="BigDiamond6" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(597, 349)
+
+[node name="BigDiamond7" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(597, 380)
+
+[node name="BigDiamond8" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(565, 349)
+
+[node name="BigDiamond9" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(533, 349)
+
+[node name="BigDiamond10" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(565, 380)
+
+[node name="BigDiamond11" parent="Instructions/MoreDiamonds" instance=ExtResource("4_vg2ms")]
+position = Vector2(533, 380)
+
+[node name="Movement2" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -737.0
+offset_top = -77.0
+offset_right = -697.0
+offset_bottom = -37.0
+
+[node name="Label" type="Label" parent="Instructions/Movement2"]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 11.0
+offset_right = 247.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Great, you did it!
+Now try the other way..."
+
+[node name="BigDiamond2" parent="Instructions" instance=ExtResource("4_vg2ms")]
+position = Vector2(1775, 47)
+
+[node name="Diamond" type="Control" parent="Instructions"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1079.0
+offset_top = -85.0
+offset_right = 1119.0
+offset_bottom = -45.0
+
+[node name="BigDiamond" parent="Instructions/Diamond" instance=ExtResource("4_vg2ms")]
+position = Vector2(52, 69)
+
+[node name="Label" type="Label" parent="Instructions/Diamond"]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 11.0
+offset_right = 247.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("5_l5jm3")
+theme_override_font_sizes/font_size = 14
+text = "Collect diamonds
+for higher score!"
+
+[node name="BoxThrower" parent="." instance=ExtResource("10_jfb8r")]
+position = Vector2(1010, 313)
+scale = Vector2(-1, 1)
+
+[node name="CannonNode" parent="." instance=ExtResource("11_v87ja")]
+position = Vector2(1252, 497)
+balls = 3
 
 [connection signal="score_updated" from="Player" to="HUD" method="_on_player_score_updated"]

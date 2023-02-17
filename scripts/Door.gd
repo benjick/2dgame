@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @onready var sprite = $AnimatedSprite2D
 
-@export var next_scene = "TestLevel"
+@export var next_scene = "Level0"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

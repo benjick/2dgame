@@ -78,7 +78,8 @@ func _physics_process(delta):
 					# Only one jump on the same side
 					if signed_direction != last_wall_direction:
 						cayote_counter = 1
-						velocity.x += 500 * signed_direction * -1
+						velocity.y += 500
+						velocity.x += 1000 * signed_direction * -1
 						last_wall_direction = signed_direction
 			elif jump_counter < 1:
 				jump_counter += 1
@@ -87,7 +88,7 @@ func _physics_process(delta):
 		velocity.y += gravity
 		if raycast.is_colliding():
 			if raycast.get_collider().name == "TileMap":
-				max_fall_speed = 200
+				max_fall_speed = 100
 		else:
 			max_fall_speed = 2000
 		velocity.y = min(velocity.y, max_fall_speed)
@@ -121,7 +122,7 @@ func _physics_process(delta):
 	if jump_buffer_counter > 0 and cayote_counter > 0:
 		jump()
 	
-	if Input.is_action_just_released("ui_select"):
+	if Input.is_action_just_released("ui_select") and last_wall_direction == 0:
 		if velocity.y < 0:
 			velocity.y += 200
 	
