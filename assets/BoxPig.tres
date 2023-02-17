@@ -1,8 +1,25 @@
-[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://c0g2q05rvaebp"]
+[gd_resource type="SpriteFrames" load_steps=46 format=3 uid="uid://c0g2q05rvaebp"]
 
+[ext_resource type="Texture2D" uid="uid://b6q163adear3j" path="res://assets/Sprites/03-Pig/Dead (34x28).png" id="1_ooh5e"]
 [ext_resource type="Texture2D" uid="uid://c2ukecswspjy" path="res://assets/BoxPig.png" id="1_xuitu"]
 [ext_resource type="Texture2D" uid="uid://pfqtkoqrl0rh" path="res://assets/Sprites/03-Pig/Idle (34x28).png" id="2_32ix7"]
 [ext_resource type="Texture2D" uid="uid://dv75j2as1cqi0" path="res://assets/Sprites/03-Pig/Run (34x28).png" id="3_my4h6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06ceq"]
+atlas = ExtResource("1_ooh5e")
+region = Rect2(0, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib13s"]
+atlas = ExtResource("1_ooh5e")
+region = Rect2(34, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5etb8"]
+atlas = ExtResource("1_ooh5e")
+region = Rect2(68, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn041"]
+atlas = ExtResource("1_ooh5e")
+region = Rect2(102, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1hps"]
 atlas = ExtResource("1_xuitu")
@@ -154,6 +171,23 @@ region = Rect2(320, 240, 80, 80)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06ceq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib13s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5etb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn041")
+}],
+"loop": false,
+"name": &"Dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s1hps")

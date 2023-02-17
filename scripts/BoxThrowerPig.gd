@@ -4,9 +4,22 @@ extends CharacterBody2D
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
+@onready var box_thrower = $".."
 @onready var static_box = $"../StaticBox"
 @onready var sprite = $Sprite
 @onready var dialogue = $Dialogue
+
+var pig_alive := true
+
+var flip := false:
+	get:
+		return flip
+	set(value):
+		if value:
+			box_thrower.scale.x = -1
+		else:
+			box_thrower.scale.x = 1
+		flip = value
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -23,6 +36,7 @@ func _ready():
 	start_position = self.position
 	box_position = static_box.position
 	dialogue.visible = false
+		
 
 func _physics_process(delta):
 	if in_area:
@@ -62,6 +76,8 @@ func throwBox():
 func spawnThrowableBox():
 	var throwable_box_scene = load("res://scenes/ThrowableBox.tscn")	
 	var instance = throwable_box_scene.instantiate()
+	if (flip):
+		instance.flip()
 	get_parent().add_child(instance)
 
 
@@ -91,3 +107,18 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.has_method("hit"):
 		in_area = false
+
+func _on_hit_area_2d_body_entered(body):
+	if pig_alive:
+		if body.has_method("hit"):
+			pigAlive(false)
+			body.jump()
+	
+func pigAlive(alive: bool):
+	pig_alive = alive
+	if alive == false:
+		if has_box:
+			spawnThrowableBox()
+		sprite.play("Dead")
+		await sprite.animation_finished
+		self.queue_free()

@@ -1,9 +1,20 @@
-[gd_scene load_steps=38 format=3 uid="uid://dpj7vmabyhis5"]
+[gd_scene load_steps=40 format=3 uid="uid://dpj7vmabyhis5"]
 
 [ext_resource type="SpriteFrames" uid="uid://c0g2q05rvaebp" path="res://assets/BoxPig.tres" id="1_m1q8u"]
 [ext_resource type="SpriteFrames" uid="uid://bp4wobaeyk1ss" path="res://assets/Box.tres" id="2_q5g4q"]
 [ext_resource type="Script" path="res://scripts/BoxThrowerPig.gd" id="3_6tl01"]
 [ext_resource type="Texture2D" uid="uid://bdsybw7c6bt4r" path="res://assets/Dialogue.png" id="4_7vcci"]
+
+[sub_resource type="GDScript" id="GDScript_fpoki"]
+script/source = "extends Node2D
+
+@export var flip := false
+@onready var pig = $Pig
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pig.flip = flip
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtlag"]
 
@@ -1091,10 +1102,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nrld"]
+size = Vector2(18, 0.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2g17"]
 size = Vector2(90.5, 122.5)
 
 [node name="BoxThrower" type="Node2D"]
+script = SubResource("GDScript_fpoki")
 
 [node name="StaticBox" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -1117,7 +1132,7 @@ script = ExtResource("3_6tl01")
 [node name="Sprite" type="AnimatedSprite2D" parent="Pig"]
 texture_filter = 1
 sprite_frames = ExtResource("1_m1q8u")
-animation = &"Throwing Box"
+animation = &"Dead"
 metadata/_aseprite_wizard_config_ = {
 "layer": "Pig",
 "o_ex_p": "",
@@ -1128,7 +1143,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://assets/Aseprite/04-PigBox.aseprite"
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pig"]
+[node name="BodyCollision" type="CollisionShape2D" parent="Pig"]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_rtlag")
 
@@ -1149,11 +1164,18 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://assets/Aseprite/13-Dialogue.aseprite"
 }
 
+[node name="Area2D" type="Area2D" parent="Pig"]
+
+[node name="HitCollision" type="CollisionShape2D" parent="Pig/Area2D"]
+position = Vector2(0, -12.25)
+shape = SubResource("RectangleShape2D_3nrld")
+
 [node name="TriggerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
 position = Vector2(-45.75, 60.75)
 shape = SubResource("RectangleShape2D_d2g17")
 
+[connection signal="body_entered" from="Pig/Area2D" to="Pig" method="_on_hit_area_2d_body_entered"]
 [connection signal="body_entered" from="TriggerArea" to="Pig" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="TriggerArea" to="Pig" method="_on_area_2d_body_exited"]
