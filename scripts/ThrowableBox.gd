@@ -11,6 +11,8 @@ var gravity = 250
 
 func _enter_tree():
 	velocity.x = -150 * get_parent().scale.x
+	await get_tree().create_timer(10).timeout
+	self.queue_free()
 
 func _physics_process(delta):
 	# Add the gravity.

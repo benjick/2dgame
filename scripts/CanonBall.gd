@@ -10,6 +10,8 @@ var speed = 300
 func _enter_tree():
 	velocity.y = -randi_range(0, 150)
 	speed = randi_range(200, 400)
+	await get_tree().create_timer(10).timeout
+	self.queue_free()
 
 func _physics_process(delta):
 	# Add the gravity.

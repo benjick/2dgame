@@ -20,18 +20,30 @@ var max_fall_speed := 2000
 @onready var sprite = $Rotatable/Sprite
 @onready var raycast := $Rotatable/RayCast2D
 
+@onready var heart_1 = $Hearts/Heart1
+@onready var heart_2 = $Hearts/Heart2
+@onready var heart_3 = $Hearts/Heart3
+
+
+
 signal life_updated(life)
 
 var last_wall_direction = 0
 
 var score := 0
-var life := 3333
+var life := 1
 var start_position: Vector2 = Vector2()
 
 func _ready():
 	start_position = self.position
+	setLives(life)
 
 func _physics_process(_delta):
+	if life < 1:
+		velocity.y += gravity
+		move_and_slide()
+		return
+	
 	if !sprite.is_playing():
 		sprite.play("Idle")
 		
@@ -110,12 +122,39 @@ func jump():
 func pick_up(_body: StaticBody2D):
 	score += 1
 	print("score: ", score)
+	
+func setLives(lives: int):
+	emit_signal("life_updated", lives)
+	if lives >= 1:
+		heart_1.play("Small Heart")
+		heart_1.visible = true
+	elif heart_1.visible == true:
+		heart_1.play("Hit")
+		await heart_1.animation_finished
+		heart_1.visible = false
+		
+	if lives >= 2:
+		heart_2.play("Small Heart")
+		heart_2.visible = true
+	elif heart_2.visible == true:
+		heart_2.play("Hit")
+		await heart_2.animation_finished
+		heart_2.visible = false
+		
+	if lives >= 3:
+		heart_3.play("Small Heart")
+		heart_3.visible = true
+	elif heart_3.visible == true:
+		heart_3.play("Hit")
+		await heart_3.animation_finished
+		heart_3.visible = false
+	
 
 func hit(damage: int, direction: int):
 	if $HitTimer.is_stopped():
 		life -= damage
 		life = max(life, 0)
-		emit_signal("life_updated", life)
+		setLives(life)
 		if life < 1:
 			die()
 		else:
@@ -125,5 +164,8 @@ func hit(damage: int, direction: int):
 
 func die():
 	print("dead")
+	sprite.play("Dead")
+	await get_tree().create_timer(2).timeout
 	self.position = start_position
 	life = 3
+	setLives(3)

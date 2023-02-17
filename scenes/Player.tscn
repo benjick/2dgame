@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://lxxpe6tqd31j"]
+[gd_scene load_steps=31 format=3 uid="uid://lxxpe6tqd31j"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_edhq5"]
 [ext_resource type="Texture2D" uid="uid://bfosnhufpdgxj" path="res://assets/KingPig.png" id="2_ryn15"]
+[ext_resource type="SpriteFrames" uid="uid://c6p46kk4lhsfq" path="res://assets/Hearts.tres" id="3_2fk5f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_td4bv"]
 atlas = ExtResource("2_ryn15")
@@ -142,7 +143,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a2xna")
 }],
-"loop": true,
+"loop": false,
 "name": &"Dead",
 "speed": 10.0
 }, {
@@ -307,3 +308,50 @@ target_position = Vector2(5, 0)
 [node name="HitTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Hearts" type="Node2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="Heart1" type="AnimatedSprite2D" parent="Hearts"]
+texture_filter = 1
+position = Vector2(-9, 0)
+sprite_frames = ExtResource("3_2fk5f")
+animation = &"Small Heart"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/12-Lives and Coins.aseprite"
+}
+
+[node name="Heart2" type="AnimatedSprite2D" parent="Hearts"]
+texture_filter = 1
+sprite_frames = ExtResource("3_2fk5f")
+animation = &"Small Heart"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/12-Lives and Coins.aseprite"
+}
+
+[node name="Heart3" type="AnimatedSprite2D" parent="Hearts"]
+texture_filter = 1
+position = Vector2(9, 0)
+sprite_frames = ExtResource("3_2fk5f")
+animation = &"Small Heart"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/12-Lives and Coins.aseprite"
+}
