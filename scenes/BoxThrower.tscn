@@ -1099,7 +1099,7 @@ animations = [{
 size = Vector2(18, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2g17"]
-size = Vector2(90.5, 122.5)
+size = Vector2(138, 360.5)
 
 [node name="BoxThrower" type="Node2D" groups=["mobs"]]
 
@@ -1137,7 +1137,7 @@ shape = SubResource("RectangleShape2D_rtlag")
 texture_filter = 1
 sprite_frames = ExtResource("1_m1q8u")
 animation = &"Idle"
-frame_progress = 0.670489
+frame_progress = 0.63995
 metadata/_aseprite_wizard_config_ = {
 "layer": "Pig",
 "o_ex_p": "",
@@ -1175,7 +1175,7 @@ shape = SubResource("RectangleShape2D_3nrld")
 [node name="TriggerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
-position = Vector2(-45.75, 60.75)
+position = Vector2(-32, 179.75)
 shape = SubResource("RectangleShape2D_d2g17")
 
 [node name="SoundDeath" type="AudioStreamPlayer2D" parent="."]

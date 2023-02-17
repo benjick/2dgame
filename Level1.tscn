@@ -294,8 +294,8 @@ offset_right = 1443.0
 offset_bottom = 252.0
 
 [node name="Door" parent="Instructions/Door" instance=ExtResource("10_rdd5y")]
-position = Vector2(1240, 364)
-next_scene = "Level1"
+position = Vector2(1238, 396)
+next_scene = "Level2"
 
 [node name="Label" type="Label" parent="Instructions/Door"]
 layout_mode = 0

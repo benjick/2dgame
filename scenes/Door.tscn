@@ -73,12 +73,11 @@ animations = [{
 size = Vector2(45, 56)
 
 [node name="Door" type="StaticBody2D"]
-position = Vector2(358, 0)
 script = ExtResource("1_87vnk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, 0)
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_ajc2t")
 animation = &"Idle"
 metadata/_aseprite_wizard_config_ = {
@@ -92,9 +91,10 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.5, 4)
+position = Vector2(-1, -27)
 shape = SubResource("RectangleShape2D_cxwt4")
 
 [node name="SoundSuccess" type="AudioStreamPlayer2D" parent="."]
