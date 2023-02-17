@@ -24,21 +24,24 @@ var max_fall_speed := 2000
 @onready var heart_2 = $Hearts/Heart2
 @onready var heart_3 = $Hearts/Heart3
 
-
-
-signal life_updated(life)
+signal score_updated(score: int)
 
 var last_wall_direction = 0
 
 var score := 0
-var life := 1
+var life := 3
 var start_position: Vector2 = Vector2()
+var time_passed_seconds : float = 0
+var finished := false
 
 func _ready():
 	start_position = self.position
 	setLives(life)
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	if !finished:
+		time_passed_seconds += delta
+
 	if life < 1:
 		velocity.y += gravity
 		move_and_slide()
@@ -121,10 +124,9 @@ func jump():
 
 func pick_up(_body: StaticBody2D):
 	score += 1
-	print("score: ", score)
+	emit_signal("score_updated", score)
 	
 func setLives(lives: int):
-	emit_signal("life_updated", lives)
 	if lives >= 1:
 		heart_1.play("Small Heart")
 		heart_1.visible = true
