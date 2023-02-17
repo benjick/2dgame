@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyksc2bmeai1t"]
+[gd_scene load_steps=7 format=3 uid="uid://cyksc2bmeai1t"]
 
 [ext_resource type="Script" path="res://scripts/Canon.gd" id="1_bx1a3"]
 [ext_resource type="SpriteFrames" uid="uid://cihs8abf30i7s" path="res://assets/PigAndCannon.tres" id="2_fnnu5"]
+[ext_resource type="AudioStream" uid="uid://dp0ndmrvyxtsn" path="res://assets/sounds/10_Battle_SFX/03_Claw_03.wav" id="3_14q6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bijov"]
 size = Vector2(20, 1)
@@ -65,6 +66,9 @@ metadata/_aseprite_wizard_config_ = {
 "op_exp": false,
 "source": "res://assets/Aseprite/10-Cannon and Pig.aseprite"
 }
+
+[node name="SoundDeath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_14q6m")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="PigBody/Area2D" to="." method="_on_area_2d_body_entered"]

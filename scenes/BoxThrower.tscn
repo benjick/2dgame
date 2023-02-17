@@ -1,9 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://dpj7vmabyhis5"]
+[gd_scene load_steps=41 format=3 uid="uid://dpj7vmabyhis5"]
 
 [ext_resource type="SpriteFrames" uid="uid://c0g2q05rvaebp" path="res://assets/BoxPig.tres" id="1_m1q8u"]
 [ext_resource type="SpriteFrames" uid="uid://bp4wobaeyk1ss" path="res://assets/Box.tres" id="2_q5g4q"]
 [ext_resource type="Script" path="res://scripts/BoxThrowerPig.gd" id="3_6tl01"]
 [ext_resource type="Texture2D" uid="uid://bdsybw7c6bt4r" path="res://assets/Dialogue.png" id="4_7vcci"]
+[ext_resource type="AudioStream" uid="uid://dp0ndmrvyxtsn" path="res://assets/sounds/10_Battle_SFX/03_Claw_03.wav" id="5_6masu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5hm3"]
 size = Vector2(19, 14)
@@ -1136,7 +1137,7 @@ shape = SubResource("RectangleShape2D_rtlag")
 texture_filter = 1
 sprite_frames = ExtResource("1_m1q8u")
 animation = &"Idle"
-frame_progress = 0.205112
+frame_progress = 0.670489
 metadata/_aseprite_wizard_config_ = {
 "layer": "Pig",
 "o_ex_p": "",
@@ -1176,6 +1177,9 @@ shape = SubResource("RectangleShape2D_3nrld")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
 position = Vector2(-45.75, 60.75)
 shape = SubResource("RectangleShape2D_d2g17")
+
+[node name="SoundDeath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6masu")
 
 [connection signal="body_entered" from="Pig/Area2D" to="Pig" method="_on_hit_area_2d_body_entered"]
 [connection signal="body_entered" from="TriggerArea" to="Pig" method="_on_area_2d_body_entered"]

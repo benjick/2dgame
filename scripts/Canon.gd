@@ -3,6 +3,7 @@ extends Node2D
 @onready var timer = $Timer
 @onready var cannon = $CannonBody/Cannon
 @onready var cannon_pig = $PigBody/CannonPig
+@onready var sound_death = $SoundDeath
 
 @export var balls := 1
 @export var pig_alive := true
@@ -57,5 +58,6 @@ func pigAlive(alive: bool):
 		$PigBody/Area2D.queue_free()
 		$PigBody/PigCollision.queue_free()
 		cannon_pig.play("Dead")
+		sound_death.play()
 		await cannon_pig.animation_finished
 		$PigBody.queue_free()

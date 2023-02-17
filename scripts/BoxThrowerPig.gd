@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -400.0
 @onready var static_box = $"../StaticBoxBody/StaticBox"
 @onready var dialogue = $Dialogue
 @onready var sprite = $Sprite
+@onready var sound_death = $"../SoundDeath"
 
 var pig_alive := true
 
@@ -109,5 +110,6 @@ func pigAlive(alive: bool):
 		if has_box:
 			spawnThrowableBox()
 		sprite.play("Dead")
+		sound_death.play()
 		await sprite.animation_finished
 		self.queue_free()

@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var pause_panel = $PausePanel
+@onready var sound_pause = $SoundPause
+@onready var sound_unpause = $SoundUnpause
 
 var paused := false
 
@@ -20,16 +22,16 @@ func _on_player_score_updated(score):
 	$ScorePanel/ScoreLabel.text = str(score)
 
 func toggle_pause():
-	print("Pause", paused)
 	if paused:
 		paused = false
 		pause_panel.visible = false
 		get_tree().paused = false
+		sound_unpause.play()
 	else:
 		paused = true
 		pause_panel.visible = true
 		get_tree().paused = true
-	print("Pause2", paused)
+		sound_pause.play()
 
 
 func _on_button_pressed():

@@ -1,8 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://lxxpe6tqd31j"]
+[gd_scene load_steps=37 format=3 uid="uid://lxxpe6tqd31j"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_edhq5"]
 [ext_resource type="Texture2D" uid="uid://bfosnhufpdgxj" path="res://assets/KingPig.png" id="2_ryn15"]
 [ext_resource type="SpriteFrames" uid="uid://c6p46kk4lhsfq" path="res://assets/Hearts.tres" id="3_2fk5f"]
+[ext_resource type="AudioStream" uid="uid://cy8kliqr5b0je" path="res://assets/sounds/12_Player_Movement_SFX/08_Step_rock_02.wav" id="4_droem"]
+[ext_resource type="AudioStream" uid="uid://dbrudl75djc4f" path="res://assets/sounds/12_Player_Movement_SFX/30_Jump_03.wav" id="5_6sh80"]
+[ext_resource type="AudioStream" uid="uid://bjvdlmy3mvs8x" path="res://assets/sounds/12_Player_Movement_SFX/61_Hit_03.wav" id="5_cto07"]
+[ext_resource type="AudioStream" uid="uid://ch1v5vlmevvh0" path="res://assets/sounds/12_Player_Movement_SFX/45_Landing_01.wav" id="6_as81o"]
+[ext_resource type="AudioStream" uid="uid://ec5vsn0ptgpv" path="res://assets/sounds/10_UI_Menu_SFX/033_Denied_03.wav" id="6_jjatw"]
+[ext_resource type="AudioStream" uid="uid://2dprv4m2irii" path="res://assets/sounds/12_Player_Movement_SFX/42_Cling_climb_03.wav" id="6_mxcts"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_td4bv"]
 atlas = ExtResource("2_ryn15")
@@ -268,18 +274,6 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.15
-one_shot = true
-
-[node name="HangTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="HangJumpTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4, 11, -8, 6, -8, -2, -6, -8, 6, -8, 8, -2, 8, 6, 5, 11)
 
@@ -305,10 +299,6 @@ metadata/_aseprite_wizard_config_ = {
 [node name="RayCast2D" type="RayCast2D" parent="Rotatable"]
 position = Vector2(8, 0)
 target_position = Vector2(5, 0)
-
-[node name="HitTimer" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
 
 [node name="Hearts" type="Node2D" parent="."]
 position = Vector2(0, -15)
@@ -356,3 +346,41 @@ metadata/_aseprite_wizard_config_ = {
 "op_exp": false,
 "source": "res://assets/Aseprite/12-Lives and Coins.aseprite"
 }
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+wait_time = 0.15
+one_shot = true
+
+[node name="HangTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="HangJumpTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="SoundStep" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_droem")
+
+[node name="SoundHit" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_cto07")
+
+[node name="SoundSlide" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_mxcts")
+
+[node name="SoundDeath" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_jjatw")
+
+[node name="SoundLanding" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_as81o")
+
+[node name="SoundJump" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_6sh80")

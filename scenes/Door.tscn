@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cexsom71ycb5w"]
+[gd_scene load_steps=11 format=3 uid="uid://cexsom71ycb5w"]
 
 [ext_resource type="Script" path="res://scripts/Door.gd" id="1_87vnk"]
 [ext_resource type="Texture2D" uid="uid://b2xvxk5nr73f0" path="res://assets/Door.png" id="2_5is5g"]
+[ext_resource type="AudioStream" uid="uid://cckjbsyk2xdvm" path="res://assets/sounds/10_UI_Menu_SFX/013_Confirm_03.wav" id="3_jdiv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqnqc"]
 atlas = ExtResource("2_5is5g")
@@ -95,5 +96,8 @@ metadata/_aseprite_wizard_config_ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.5, 4)
 shape = SubResource("RectangleShape2D_cxwt4")
+
+[node name="SoundSuccess" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jdiv2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

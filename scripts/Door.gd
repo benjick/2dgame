@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @onready var sprite = $AnimatedSprite2D
+@onready var sound_success = $SoundSuccess
 
 @export var next_scene = "Level0"
 
@@ -16,4 +17,5 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("finish"):
+		sound_success.play()
 		body.finish(self, sprite)

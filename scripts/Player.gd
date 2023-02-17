@@ -14,11 +14,20 @@ var cayote_counter : int = 0
 
 var max_fall_speed := 2000
 
-@onready var coyote_timer = $CoyoteTimer
-@onready var hang_timer = $HangTimer
-@onready var hang_jump_timer = $HangJumpTimer
+@onready var coyote_timer = $Timers/CoyoteTimer
+@onready var hang_timer = $Timers/HangTimer
+@onready var hang_jump_timer = $Timers/HangJumpTimer
+@onready var hit_timer = $Timers/HitTimer
+
 @onready var sprite = $Rotatable/Sprite
 @onready var raycast := $Rotatable/RayCast2D
+
+@onready var sound_step = $Sounds/SoundStep
+@onready var sound_jump = $Sounds/SoundJump
+@onready var sound_hit = $Sounds/SoundHit
+@onready var sound_landing = $Sounds/SoundLanding
+@onready var sound_death = $Sounds/SoundDeath
+@onready var sound_slide = $Sounds/SoundSlide
 
 @onready var heart_1 = $Hearts/Heart1
 @onready var heart_2 = $Hearts/Heart2
@@ -88,6 +97,8 @@ func _physics_process(delta):
 		velocity.y += gravity
 		if raycast.is_colliding():
 			if raycast.get_collider().name == "TileMap":
+				if !sound_slide.playing:
+					sound_slide.play()
 				max_fall_speed = 100
 		else:
 			max_fall_speed = 2000
@@ -97,6 +108,8 @@ func _physics_process(delta):
 		$Rotatable.scale.x = signed_direction
 		velocity.x += acceleration * signed_direction
 		sprite.play("Run")
+		if is_on_floor() and !sound_step.playing:
+			sound_step.play()
 
 
 	else:
@@ -110,7 +123,7 @@ func _physics_process(delta):
 	if velocity.y > 0:
 		sprite.play("Fall")
 		
-	if !$HitTimer.is_stopped():
+	if !hit_timer.is_stopped():
 		sprite.play("Hit")
 	
 	if Input.is_action_just_pressed("ui_select") || Input.is_action_just_pressed("ui_up"):
@@ -126,12 +139,16 @@ func _physics_process(delta):
 		if velocity.y < 0:
 			velocity.y += 200
 	
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	if !was_on_floor and is_on_floor():
+		sound_landing.play()
 	
 func jump():
 	velocity.y = -jump_force
 	jump_buffer_counter = 0
 	cayote_counter = 0
+	sound_jump.play()
 
 func pick_up(_body: StaticBody2D):
 	score += 1
@@ -164,20 +181,22 @@ func setLives(lives: int):
 	
 
 func hit(damage: int, direction: int):
-	if $HitTimer.is_stopped():
+	if hit_timer.is_stopped():
 		life -= damage
 		life = max(life, 0)
 		setLives(life)
 		if life < 1:
 			die()
 		else:
+			sound_hit.play()
 			velocity.x = direction * hit_force
-			$HitTimer.start()
+			hit_timer.start()
 		print("Damage: ", damage)
 
 func die():
 	print("dead")
 	sprite.play("Dead")
+	sound_death.play()
 	await get_tree().create_timer(2).timeout
 	self.position = start_position
 	life = 3
