@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 
 
@@ -5,7 +6,7 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 @onready var box_thrower = $".."
-@onready var static_box = $"../StaticBox"
+@onready var static_box = $"../StaticBoxBody/StaticBox"
 @onready var sprite = $Sprite
 @onready var dialogue = $Dialogue
 
@@ -39,6 +40,8 @@ func _ready():
 		
 
 func _physics_process(delta):
+	if !pig_alive:
+		return
 	if in_area:
 		if getting_box:
 			if position.x == box_position.x:
@@ -117,6 +120,7 @@ func _on_hit_area_2d_body_entered(body):
 func pigAlive(alive: bool):
 	pig_alive = alive
 	if alive == false:
+		$BodyCollision.queue_free()
 		if has_box:
 			spawnThrowableBox()
 		sprite.play("Dead")

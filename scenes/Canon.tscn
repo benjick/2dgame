@@ -16,7 +16,7 @@ size = Vector2(23, 18)
 script = ExtResource("1_bx1a3")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="PigBody" type="StaticBody2D" parent="."]

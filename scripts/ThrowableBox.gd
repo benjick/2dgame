@@ -30,7 +30,6 @@ func flip():
 func _on_area_2d_body_entered(body):
 	if body.has_method("hit"):
 		var direction = sign(velocity.x)
-		print("direction", direction)
 		body.hit(DAMAGE, direction)
 		animated_sprite_2d.play("Hit")
 		gravity = 0

@@ -13,7 +13,6 @@ func _process(delta):
 
 
 func _on_diamond_area_body_entered(body):
-	print(body)
 	if body.has_method("pick_up"):
 		body.pick_up(self)
 		diamond_sprite.position.y += -22

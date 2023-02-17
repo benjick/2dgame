@@ -414,7 +414,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_7n2dd"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/3 = SubResource("TileSetAtlasSource_f2vjc")
 sources/4 = SubResource("TileSetAtlasSource_ugvma")
 
@@ -462,6 +463,3 @@ position = Vector2(1195, 13)
 [node name="BoxThrower" parent="." instance=ExtResource("6_gws40")]
 position = Vector2(1023, -72)
 flip = true
-
-[node name="BoxThrower2" parent="." instance=ExtResource("6_gws40")]
-position = Vector2(1103, -72)
