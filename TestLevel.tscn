@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://brgnmv2vux1y"]
 
-[ext_resource type="PackedScene" uid="uid://lxxpe6tqd31j" path="res://scenes/Player.tscn" id="1_spgmn"]
-[ext_resource type="Texture2D" uid="uid://dy5xcrxbqy2xy" path="res://assets/TileSets/Terrain (32x32).png" id="1_tnfaw"]
-[ext_resource type="Texture2D" uid="uid://du85ilwgt7yan" path="res://assets/TileSets/Decorations (32x32).png" id="2_jtrfp"]
-[ext_resource type="PackedScene" uid="uid://ch1psllsuden8" path="res://scenes/BigDiamond.tscn" id="4_mwedw"]
-[ext_resource type="PackedScene" uid="uid://cyksc2bmeai1t" path="res://scenes/Canon.tscn" id="5_otnoi"]
-[ext_resource type="PackedScene" uid="uid://dpj7vmabyhis5" path="res://scenes/BoxThrower.tscn" id="6_gws40"]
+[ext_resource type="PackedScene" uid="uid://lxxpe6tqd31j" path="res://scenes/Player.tscn" id="1_6h55p"]
+[ext_resource type="Texture2D" uid="uid://dy5xcrxbqy2xy" path="res://assets/TileSets/Terrain (32x32).png" id="2_toysm"]
+[ext_resource type="Texture2D" uid="uid://du85ilwgt7yan" path="res://assets/TileSets/Decorations (32x32).png" id="3_x4lqd"]
+[ext_resource type="PackedScene" uid="uid://cyksc2bmeai1t" path="res://scenes/Canon.tscn" id="4_h2yci"]
+[ext_resource type="PackedScene" uid="uid://ch1psllsuden8" path="res://scenes/BigDiamond.tscn" id="5_4uaxf"]
+[ext_resource type="PackedScene" uid="uid://dpj7vmabyhis5" path="res://scenes/BoxThrower.tscn" id="6_edhfq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2vjc"]
-texture = ExtResource("1_tnfaw")
+texture = ExtResource("2_toysm")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -341,7 +341,7 @@ texture_region_size = Vector2i(32, 32)
 17:11/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ugvma"]
-texture = ExtResource("2_jtrfp")
+texture = ExtResource("3_x4lqd")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -421,7 +421,7 @@ sources/4 = SubResource("TileSetAtlasSource_ugvma")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_spgmn")]
+[node name="Player" parent="." instance=ExtResource("1_6h55p")]
 z_index = 1
 position = Vector2(1073, 19)
 
@@ -439,27 +439,30 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(65541, 327684, 2, 131078, 327684, 2, 196613, 327684, 2, 262150, 327684, 2, -131075, 131076, 3, -131074, 196612, 3, -65539, 131076, 4, -65538, 196612, 4, -131073, 262148, 3, -65537, 262148, 4, -196608, 327684, 3, -131072, 327684, 4, -262140, 65540, 1, -196604, 65540, 2, -131068, 65540, 3, -196600, 196612, 3, -131064, 196612, 4, -196603, 131076, 3, -131067, 131076, 4, -196602, 196612, 3, -131066, 196612, 4, -196601, 131076, 3, -131065, 131076, 4, -262135, 65540, 1, -196599, 65540, 2, -131063, 65540, 3, -196591, 262148, 3, -131055, 262148, 4, -196590, 327684, 3, -131054, 327684, 4, -196588, 131076, 3, -131052, 131076, 4, -196587, 196612, 3, -131051, 196612, 4, -196586, 262148, 3, -131050, 262148, 4, -196585, 327684, 3, -131049, 327684, 4, -196583, 131076, 3, -131047, 131076, 4, -196582, 196612, 3, -131046, 196612, 4, -196581, 262148, 3, -131045, 262148, 4, -196580, 327684, 3, -131044, 327684, 4, -131058, 327683, 5, -262125, 65540, 1, -196589, 65540, 2, -131053, 65540, 3, -262120, 65540, 1, -196584, 65540, 2, -131048, 65540, 3, 65554, 327684, 2, 131091, 327684, 2, 196626, 327684, 2, 262163, 327684, 2, 65558, 327684, 2, 131094, 327684, 2, 196630, 327684, 2, 262166, 327684, 2, 65563, 327684, 2, 131099, 327684, 2, 196635, 327684, 2, 262171, 327684, 2)
 
-[node name="CannonNode" parent="." instance=ExtResource("5_otnoi")]
+[node name="CannonNode" parent="." instance=ExtResource("4_h2yci")]
 position = Vector2(361, -79)
 balls = 3
 
 [node name="Diamonds" type="Node2D" parent="."]
 
-[node name="BigDiamond" parent="Diamonds" instance=ExtResource("4_mwedw")]
+[node name="BigDiamond" parent="Diamonds" instance=ExtResource("5_4uaxf")]
 position = Vector2(-107, -111)
 
-[node name="BigDiamond2" parent="Diamonds" instance=ExtResource("4_mwedw")]
+[node name="BigDiamond2" parent="Diamonds" instance=ExtResource("5_4uaxf")]
 position = Vector2(78, 19)
 
-[node name="BigDiamond3" parent="Diamonds" instance=ExtResource("4_mwedw")]
+[node name="BigDiamond3" parent="Diamonds" instance=ExtResource("5_4uaxf")]
 position = Vector2(177, 145)
 
-[node name="BigDiamond4" parent="Diamonds" instance=ExtResource("4_mwedw")]
+[node name="BigDiamond4" parent="Diamonds" instance=ExtResource("5_4uaxf")]
 position = Vector2(286, 299)
 
-[node name="BigDiamond5" parent="Diamonds" instance=ExtResource("4_mwedw")]
+[node name="BigDiamond5" parent="Diamonds" instance=ExtResource("5_4uaxf")]
 position = Vector2(1195, 13)
 
-[node name="BoxThrower" parent="." instance=ExtResource("6_gws40")]
-position = Vector2(1023, -72)
-flip = true
+[node name="BoxThrower2" parent="." instance=ExtResource("6_edhfq")]
+position = Vector2(1122, -72)
+
+[node name="BoxThrower" parent="." instance=ExtResource("6_edhfq")]
+position = Vector2(1031, -71)
+scale = Vector2(-1, 1)

@@ -1,21 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://dpj7vmabyhis5"]
+[gd_scene load_steps=40 format=3 uid="uid://dpj7vmabyhis5"]
 
 [ext_resource type="SpriteFrames" uid="uid://c0g2q05rvaebp" path="res://assets/BoxPig.tres" id="1_m1q8u"]
 [ext_resource type="SpriteFrames" uid="uid://bp4wobaeyk1ss" path="res://assets/Box.tres" id="2_q5g4q"]
 [ext_resource type="Script" path="res://scripts/BoxThrowerPig.gd" id="3_6tl01"]
 [ext_resource type="Texture2D" uid="uid://bdsybw7c6bt4r" path="res://assets/Dialogue.png" id="4_7vcci"]
 
-[sub_resource type="GDScript" id="GDScript_fpoki"]
-script/source = "@tool
-extends Node2D
-
-@export var flip := false
-@onready var pig = $Pig
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pig.flip = flip
-"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5hm3"]
+size = Vector2(19, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtlag"]
 
@@ -1109,11 +1100,28 @@ size = Vector2(18, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2g17"]
 size = Vector2(90.5, 122.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5hm3"]
-size = Vector2(19, 14)
-
 [node name="BoxThrower" type="Node2D"]
-script = SubResource("GDScript_fpoki")
+
+[node name="StaticBoxBody" type="StaticBody2D" parent="."]
+
+[node name="StaticBox" type="AnimatedSprite2D" parent="StaticBoxBody"]
+texture_filter = 1
+position = Vector2(40, -8)
+sprite_frames = ExtResource("2_q5g4q")
+animation = &"Idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Cannon",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/09-Box.aseprite"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBoxBody"]
+position = Vector2(39.5, 0)
+shape = SubResource("RectangleShape2D_c5hm3")
 
 [node name="Pig" type="CharacterBody2D" parent="."]
 collision_layer = 2
@@ -1166,27 +1174,6 @@ shape = SubResource("RectangleShape2D_3nrld")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
 position = Vector2(-45.75, 60.75)
 shape = SubResource("RectangleShape2D_d2g17")
-
-[node name="StaticBoxBody" type="StaticBody2D" parent="."]
-
-[node name="StaticBox" type="AnimatedSprite2D" parent="StaticBoxBody"]
-texture_filter = 1
-position = Vector2(40, -8)
-sprite_frames = ExtResource("2_q5g4q")
-animation = &"Idle"
-metadata/_aseprite_wizard_config_ = {
-"layer": "Cannon",
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"source": "res://assets/Aseprite/09-Box.aseprite"
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBoxBody"]
-position = Vector2(39.5, 0)
-shape = SubResource("RectangleShape2D_c5hm3")
 
 [connection signal="body_entered" from="Pig/Area2D" to="Pig" method="_on_hit_area_2d_body_entered"]
 [connection signal="body_entered" from="TriggerArea" to="Pig" method="_on_area_2d_body_entered"]

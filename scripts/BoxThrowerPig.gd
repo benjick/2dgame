@@ -7,20 +7,10 @@ const JUMP_VELOCITY = -400.0
 
 @onready var box_thrower = $".."
 @onready var static_box = $"../StaticBoxBody/StaticBox"
-@onready var sprite = $Sprite
 @onready var dialogue = $Dialogue
+@onready var sprite = $Sprite
 
 var pig_alive := true
-
-var flip := false:
-	get:
-		return flip
-	set(value):
-		if value:
-			box_thrower.scale.x = -1
-		else:
-			box_thrower.scale.x = 1
-		flip = value
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -42,28 +32,26 @@ func _ready():
 func _physics_process(delta):
 	if !pig_alive:
 		return
-	if in_area:
-		if getting_box:
-			if position.x == box_position.x:
+		
+	if !has_box:
+		if position.x == box_position.x:
 				if !picking_up_box:
 					pickUpBox(delta)
-			else:
-				sprite.play("Run no box")
-				position.x = move_toward(position.x, box_position.x, SPEED * delta)
-		elif !has_box:
-			getting_box = true
 		else:
-			if position.x != start_position.x:
-				position.x = move_toward(position.x, start_position.x, SPEED * delta)
-			else:
-				throwBox()
+			sprite.play("Run no box")
+			sprite.scale.x = -1
+			position.x = move_toward(position.x, box_position.x, SPEED * delta)
+		pass
 	else:
-		if has_box:
-			if position.x == start_position.x:
+		if position.x == start_position.x:
+			if in_area:
+				throwBox()
+			else:
 				sprite.play("Idle")
 		else:
-			if position.x == start_position.x:
-				sprite.play("Idle no box")
+			sprite.play("Run")
+			sprite.scale.x = 1
+			position.x = move_toward(position.x, start_position.x, SPEED * delta)
 
 	move_and_slide()
 	
@@ -73,14 +61,13 @@ func throwBox():
 		sprite.play("Throwing Box")
 		await get_tree().create_timer(0.3).timeout
 		spawnThrowableBox()
+		await get_tree().create_timer(1).timeout
 		has_box = false
 		throwing_box = false
 
 func spawnThrowableBox():
 	var throwable_box_scene = load("res://scenes/ThrowableBox.tscn")	
 	var instance = throwable_box_scene.instantiate()
-	if (flip):
-		instance.flip()
 	get_parent().add_child(instance)
 
 
@@ -96,8 +83,6 @@ func pickUpBox(delta):
 
 func showDialogue():
 	dialogue.visible = true
-	dialogue.play("#!?")
-	await dialogue.animation_finished
 	dialogue.play("#!?")
 	await dialogue.animation_finished
 	dialogue.visible = false

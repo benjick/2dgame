@@ -35,6 +35,7 @@ func shoot():
 	
 	cannon.play("Shoot")
 	spawnCannonBall()
+	await cannon.animation_finished
 	cannon.play("Idle")
 	cannon_pig.play("Pig Idle")
 

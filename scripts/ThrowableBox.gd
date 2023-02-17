@@ -10,7 +10,7 @@ const DAMAGE = 1
 var gravity = 250
 
 func _enter_tree():
-	velocity.x = -150 * self.scale.x
+	velocity.x = -150 * get_parent().scale.x
 
 func _physics_process(delta):
 	# Add the gravity.
