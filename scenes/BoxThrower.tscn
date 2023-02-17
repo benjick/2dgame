@@ -1100,7 +1100,7 @@ size = Vector2(18, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2g17"]
 size = Vector2(90.5, 122.5)
 
-[node name="BoxThrower" type="Node2D"]
+[node name="BoxThrower" type="Node2D" groups=["mobs"]]
 
 [node name="StaticBoxBody" type="StaticBody2D" parent="."]
 
@@ -1135,7 +1135,8 @@ shape = SubResource("RectangleShape2D_rtlag")
 [node name="Sprite" type="AnimatedSprite2D" parent="Pig"]
 texture_filter = 1
 sprite_frames = ExtResource("1_m1q8u")
-animation = &"Idle no box"
+animation = &"Idle"
+frame_progress = 0.205112
 metadata/_aseprite_wizard_config_ = {
 "layer": "Pig",
 "o_ex_p": "",

@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://cexsom71ycb5w"]
+
+[ext_resource type="Script" path="res://scripts/Door.gd" id="1_87vnk"]
+[ext_resource type="Texture2D" uid="uid://b2xvxk5nr73f0" path="res://assets/Door.png" id="2_5is5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnqc"]
+atlas = ExtResource("2_5is5g")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a4yk"]
+atlas = ExtResource("2_5is5g")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trvkh"]
+atlas = ExtResource("2_5is5g")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in215"]
+atlas = ExtResource("2_5is5g")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x2vw"]
+atlas = ExtResource("2_5is5g")
+region = Rect2(96, 96, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajc2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a4yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trvkh")
+}],
+"loop": false,
+"name": &"Closing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trvkh")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in215")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trvkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a4yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x2vw")
+}],
+"loop": false,
+"name": &"Opening",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxwt4"]
+size = Vector2(45, 56)
+
+[node name="Door" type="StaticBody2D"]
+position = Vector2(358, 0)
+script = ExtResource("1_87vnk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_ajc2t")
+animation = &"Idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Door",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/11-Door.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 4)
+shape = SubResource("RectangleShape2D_cxwt4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -12,7 +12,7 @@ size = Vector2(21, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdhm5"]
 size = Vector2(23, 18)
 
-[node name="CannonNode" type="Node2D"]
+[node name="CannonNode" type="Node2D" groups=["mobs"]]
 script = ExtResource("1_bx1a3")
 
 [node name="Timer" type="Timer" parent="."]

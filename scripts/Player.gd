@@ -33,14 +33,24 @@ var life := 3
 var start_position: Vector2 = Vector2()
 var time_passed_seconds : float = 0
 var finished := false
+var finished_position := Vector2()
 
 func _ready():
 	start_position = self.position
 	setLives(life)
 
 func _physics_process(delta):
-	if !finished:
-		time_passed_seconds += delta
+	if finished:
+		velocity.y += gravity
+		velocity.x = 0
+		self.position.x = move_toward(self.position.x, finished_position.x, delta * base_max_speed / 2)
+		self.modulate.a = move_toward(self.modulate.a, 0, delta)
+		if self.position.x == finished_position.x:
+			sprite.play("Idle")
+		else:
+			sprite.play("Running")
+		move_and_slide()
+		return
 
 	if life < 1:
 		velocity.y += gravity
@@ -171,3 +181,16 @@ func die():
 	self.position = start_position
 	life = 3
 	setLives(3)
+
+func finish(body: StaticBody2D, door_sprite: AnimatedSprite2D):
+	get_tree().call_group("mobs", "queue_free")
+	finished = true
+	finished_position = body.position
+	door_sprite.play("Opening")
+	await get_tree().create_timer(1).timeout
+	print("ok")
+	# fade out
+	door_sprite.play("Closing")
+	await get_tree().create_timer(1).timeout
+	var next_scene = str("res://", body.next_scene, ".tscn")
+	get_tree().change_scene_to_file(next_scene)
