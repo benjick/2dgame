@@ -34,6 +34,7 @@ var max_fall_speed := 2000
 @onready var heart_3 = $Hearts/Heart3
 
 signal score_updated(score: int)
+signal time_passed_updated(seconds: float)
 
 var last_wall_direction = 0
 
@@ -60,6 +61,9 @@ func _physics_process(delta):
 			sprite.play("Running")
 		move_and_slide()
 		return
+		
+	time_passed_seconds += delta
+	emit_signal("time_passed_updated", time_passed_seconds)
 
 	if life < 1:
 		velocity.y += gravity

@@ -59,5 +59,7 @@ scale = Vector2(-1, 1)
 [node name="HUD" parent="." instance=ExtResource("6_bpw1i")]
 
 [node name="Door" parent="." instance=ExtResource("7_2ombx")]
+next_scene = "Level1"
 
 [connection signal="score_updated" from="Player" to="HUD" method="_on_player_score_updated"]
+[connection signal="time_passed_updated" from="Player" to="HUD" method="_on_player_time_passed_updated"]

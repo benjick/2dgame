@@ -410,3 +410,4 @@ position = Vector2(1252, 497)
 balls = 3
 
 [connection signal="score_updated" from="Player" to="HUD" method="_on_player_score_updated"]
+[connection signal="time_passed_updated" from="Player" to="HUD" method="_on_player_time_passed_updated"]
