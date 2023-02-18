@@ -1,0 +1,112 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://nmahhj23bjj7"]
+
+[ext_resource type="Texture2D" uid="uid://do1myron85d1m" path="res://assets/PigBox.png" id="1_1526u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x06cj"]
+atlas = ExtResource("1_1526u")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te5t3"]
+atlas = ExtResource("1_1526u")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmu5j"]
+atlas = ExtResource("1_1526u")
+region = Rect2(80, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75evl"]
+atlas = ExtResource("1_1526u")
+region = Rect2(160, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dhw8"]
+atlas = ExtResource("1_1526u")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d40pd"]
+atlas = ExtResource("1_1526u")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwusk"]
+atlas = ExtResource("1_1526u")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5y0d"]
+atlas = ExtResource("1_1526u")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdlp5"]
+atlas = ExtResource("1_1526u")
+region = Rect2(160, 0, 80, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x06cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te5t3")
+}],
+"loop": true,
+"name": &"Anticipation",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmu5j")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75evl")
+}],
+"loop": true,
+"name": &"Ground",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x06cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te5t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dhw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d40pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmu5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75evl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dhw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d40pd")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwusk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5y0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdlp5")
+}],
+"loop": true,
+"name": &"Looking out",
+"speed": 10.0
+}]

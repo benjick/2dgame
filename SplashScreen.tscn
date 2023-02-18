@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/SplashScreen.gd" id="1_xib27"]
 [ext_resource type="FontFile" uid="uid://dj0b1cgr7hlh5" path="res://assets/fonts/WayfarersToyBoxRegular.ttf" id="2_mhrsh"]
 [ext_resource type="SpriteFrames" uid="uid://dheg3v33x0xmm" path="res://assets/KingPig.tres" id="3_ev0y2"]
-[ext_resource type="SpriteFrames" uid="uid://b28j22xra1jvt" path="res://assets/Pig.tres" id="4_8ekhd"]
+[ext_resource type="SpriteFrames" uid="uid://c0g2q05rvaebp" path="res://assets/BoxPig.tres" id="4_fidox"]
 
 [node name="IntroScreen" type="Control"]
 layout_mode = 3
@@ -63,7 +63,7 @@ animation = &"Idle"
 texture_filter = 1
 position = Vector2(-167, 307)
 scale = Vector2(-5, 5)
-sprite_frames = ExtResource("4_8ekhd")
+sprite_frames = ExtResource("4_fidox")
 animation = &"Idle"
 
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]

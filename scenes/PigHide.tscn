@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://btksnd5u86nam"]
+
+[ext_resource type="SpriteFrames" path="res://assets/PigHide.tres" id="1_yabdf"]
+
+[node name="PigHide" type="StaticBody2D"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_yabdf")
+animation = &"Looking out"
+frame_progress = 0.511079
+metadata/_aseprite_wizard_config_ = {
+"layer": "Dibujo",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/06-PigHide.aseprite"
+}

@@ -13,6 +13,7 @@ var time_passed_seconds : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.visible = true
 	pause_panel.visible = false
 	pass # Replace with function body.
 

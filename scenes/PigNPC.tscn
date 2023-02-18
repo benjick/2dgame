@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3ruocivx2tqe"]
+
+[ext_resource type="Script" path="res://scripts/PigNPC.gd" id="1_la5xa"]
+[ext_resource type="SpriteFrames" path="res://assets/Pig.tres" id="1_o3yus"]
+[ext_resource type="SpriteFrames" uid="uid://8dtyc4ho3v8p" path="res://assets/Dialogue.tres" id="3_fwsyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqrtt"]
+size = Vector2(109.5, 75)
+
+[node name="PigNPC" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_la5xa")
+
+[node name="NPC" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_o3yus")
+animation = &"Idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Dibujo",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": "res://assets/Aseprite/03-Pig.aseprite"
+}
+
+[node name="Dialogue" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -16)
+sprite_frames = ExtResource("3_fwsyg")
+animation = &"Hello"
+frame = 53
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-42.75, -27)
+shape = SubResource("RectangleShape2D_cqrtt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
